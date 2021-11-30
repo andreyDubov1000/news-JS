@@ -6,8 +6,17 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const baseConfig = {
     entry: path.resolve(__dirname, './src/index.js'),
     mode: 'development',
+    stats: {
+        children: true,
+        errorDetails: true,
+    },
     module: {
         rules: [
+            {
+                test: /\.[t]s$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
+            },
             {
                 test: /\.css$/i,
                 use: ['style-loader', 'css-loader'],
@@ -15,11 +24,11 @@ const baseConfig = {
         ],
     },
     resolve: {
-        extensions: ['.js'],
+        extensions: ['.ts', '.js'],
     },
     output: {
         filename: 'index.js',
-        path: path.resolve(__dirname, '../dist'),
+        path: path.resolve(__dirname, './dist'),
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -32,7 +41,9 @@ const baseConfig = {
 
 module.exports = ({ mode }) => {
     const isProductionMode = mode === 'prod';
-    const envConfig = isProductionMode ? require('./webpack.prod.config') : require('./webpack.dev.config');
+    const envConfig = isProductionMode
+        ? require('../andreydubov1000-JSFE2021Q3/temp/webpack.prod.config')
+        : require('../andreydubov1000-JSFE2021Q3/temp/webpack.dev.config');
 
     return merge(baseConfig, envConfig);
 };
