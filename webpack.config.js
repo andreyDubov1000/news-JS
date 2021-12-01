@@ -2,9 +2,10 @@ const path = require('path');
 const { merge } = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 const baseConfig = {
-    entry: path.resolve(__dirname, './src/index.js'),
+    entry: path.resolve(__dirname, './src/index'),
     mode: 'development',
     stats: {
         children: true,
@@ -31,6 +32,7 @@ const baseConfig = {
         path: path.resolve(__dirname, './dist'),
     },
     plugins: [
+        new ESLintPlugin({ extensions: ['ts'] }),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, './src/index.html'),
             filename: 'index.html',
@@ -41,9 +43,7 @@ const baseConfig = {
 
 module.exports = ({ mode }) => {
     const isProductionMode = mode === 'prod';
-    const envConfig = isProductionMode
-        ? require('../andreydubov1000-JSFE2021Q3/temp/webpack.prod.config')
-        : require('../andreydubov1000-JSFE2021Q3/temp/webpack.dev.config');
+    const envConfig = isProductionMode ? require('./webpack.prod.config') : require('./webpack.dev.config');
 
     return merge(baseConfig, envConfig);
 };
