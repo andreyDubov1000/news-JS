@@ -32,7 +32,7 @@ const baseConfig = {
         path: path.resolve(__dirname, './dist'),
     },
     plugins: [
-        new ESLintPlugin({ extensions: ['ts'] }),
+        //new ESLintPlugin({ extensions: ['ts'] }),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, './src/index.html'),
             filename: 'index.html',

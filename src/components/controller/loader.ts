@@ -1,8 +1,8 @@
 interface Options {
     [key: string]: string;
 }
-///<reference path = "form-namespace.ts"/>
-type Callback = (o: Form.DataItems) => void;
+/// <reference path = "form-namespace.ts"/>
+type Callback = <DI extends Form.DataItems>(o?: DI) => void;
 
 class Loader {
     baseLink: string;
@@ -23,10 +23,11 @@ class Loader {
         this.load('GET', endpoint, callback, options);
     }
 
-    errorHandler<T extends Response>(res: T): T {
+    errorHandler<R extends Response>(res: R): R {
         if (!res.ok) {
-            if (res.status === 401 || res.status === 404)
+            if (res.status === 401 || res.status === 404) {
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
+            }
             throw Error(res.statusText);
         }
 

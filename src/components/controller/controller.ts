@@ -2,41 +2,41 @@ import AppLoader from './appLoader';
 /// <reference path = "form-namespace.ts"/>
 
 type Callback = <DI extends Form.DataItems>(o?: DI) => void;
-// type CallbackNews = (o?: Partial<Form.DataItems>) => void;
-// type g = Partial<Form.DataItems>
+// type CallbackNews = <DI2 extends Form.DataItems2>(o?: DI2) => void;
+
 class AppController extends AppLoader {
-    getSources(callback: Callback) {
+    getSources(callback: Callback): void {
         super.getResp(
-      {
-                endpoint: 'sources'
+            {
+                endpoint: 'sources',
             },
-      callback,
+            callback
         );
-  }
+    }
 
-  getNews(e: Event, callback: Callback) {
-        let target = e?.target as HTMLElement
-    const newsContainer = e?.currentTarget as HTMLElement
+    getNews(e: Event, callback: Callback): void {
+        let target = e?.target as HTMLElement;
+        const newsContainer = e?.currentTarget as HTMLElement;
 
-    while (target !== newsContainer) {
+        while (target !== newsContainer) {
             if (target.classList.contains('source__item')) {
-        const sourceId = target.getAttribute('data-source-id')!
-        if (newsContainer.getAttribute('data-source') !== sourceId) {
-          newsContainer.setAttribute('data-source', sourceId);
-          super.getResp(
+                const sourceId = target.getAttribute('data-source-id')!;
+                if (newsContainer.getAttribute('data-source') !== sourceId) {
+                    newsContainer.setAttribute('data-source', sourceId);
+                    super.getResp(
                         {
                             endpoint: 'everything',
                             options: {
-                sources: sourceId
+                                sources: sourceId,
                             },
                         },
-            callback,
+                        callback
                     );
-        }
-        return
-      }
+                }
+                return;
+            }
             target = target.parentElement!;
-    }
+        }
     }
 }
 
