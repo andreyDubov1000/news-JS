@@ -2,7 +2,6 @@ import AppLoader from './appLoader';
 /// <reference path = "form-namespace.ts"/>
 
 type Callback = <DI extends Form.DataItems>(o?: DI) => void;
-// type CallbackNews = <DI2 extends Form.DataItems2>(o?: DI2) => void;
 
 class AppController extends AppLoader {
     getSources(callback: Callback): void {
