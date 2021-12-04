@@ -16,13 +16,11 @@ namespace Form {
         readonly id: string;
     }
 
-    export interface DataItems1 {
+    export interface DataItemsSources {
         sources: Array<SourcesItem>;
     }
-    export interface DataItems2 {
+    export interface DataItemsNews {
         articles: Array<NewsItem>;
     }
-    export type DataItems = DataItems1 | DataItems2;
-
-    
+    export type DataItems = DataItemsSources | DataItemsNews;
 }

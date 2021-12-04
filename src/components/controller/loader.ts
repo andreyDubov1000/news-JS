@@ -2,7 +2,8 @@ interface Options {
     [key: string]: string;
 }
 /// <reference path = "form-namespace.ts"/>
-type Callback = <DI extends Form.DataItems>(o?: DI) => void;
+
+type Callback = (o?: Form.DataItemsSources | Form.DataItemsNews) => void;
 
 class Loader {
     baseLink: string;
@@ -16,7 +17,7 @@ class Loader {
 
     getResp(
         { endpoint, options = {} }: { endpoint: string; options?: Options },
-        callback: Callback = () => {
+        callback = () => {
             console.error('No callback for GET response');
         }
     ): void {

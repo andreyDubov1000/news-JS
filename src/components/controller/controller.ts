@@ -1,10 +1,11 @@
 import AppLoader from './appLoader';
 /// <reference path = "form-namespace.ts"/>
 
-type Callback = <DI extends Form.DataItems>(o?: DI) => void;
+type CallbackSources = <DIs extends Form.DataItemsSources>(o?: DIs) => void;
+type CallbackNews = <DIn extends Form.DataItemsNews>(o?: DIn) => void;
 
 class AppController extends AppLoader {
-    getSources(callback: Callback): void {
+    getSources(callback: CallbackSources): void {
         super.getResp(
             {
                 endpoint: 'sources',
@@ -13,7 +14,7 @@ class AppController extends AppLoader {
         );
     }
 
-    getNews(e: Event, callback: Callback): void {
+    getNews(e: Event, callback: CallbackNews): void {
         let target = e?.target as HTMLElement;
         const newsContainer = e?.currentTarget as HTMLElement;
 

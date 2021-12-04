@@ -13,12 +13,12 @@ export class AppView {
         this.sources = new Sources();
     }
 
-    drawNews<T extends Form.DataItems>(data?: T): void {
+    drawNews<T extends Form.DataItemsNews>(data?: T): void {
         const values = data?.articles ? data.articles : [];
         this.news.draw(values);
     }
 
-    drawSources<T extends Form.DataItems>(data?: T): void {
+    drawSources<T extends Form.DataItemsSources>(data?: T): void {
         const values = data?.sources ? data.sources : [];
         this.sources.draw(values);
     }
