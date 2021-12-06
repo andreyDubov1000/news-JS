@@ -5,7 +5,8 @@ import './news.css';
 class News {
     draw<DataNews extends Form.NewsItem>(data: Array<DataNews>): void {
         const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
-
+        const sources: HTMLDivElement = document.querySelector('.sources')!;
+        sources.style.height = '110px';
         const fragment = document.createDocumentFragment();
         const newsItemTemp: HTMLTemplateElement = document.querySelector('#newsItemTemp')!;
 
