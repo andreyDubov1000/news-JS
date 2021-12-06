@@ -1,12 +1,21 @@
 {
-    "plugins": ["prettier", "import"],
+    "plugins": [
+        //"prettier",
+        "import",
+        "@typescript-eslint"
+    ],
     "extends": [
-        "plugin:prettier/recommended",
-        "prettier"
+        // "plugin:prettier/recommended",
+        "eslint:recommended",
+        "airbnb-base/legacy",
+        "airbnb-typescript/base",
+        "plugin:@typescript-eslint/recommended"
+        //"prettier"
     ],
     "parserOptions": {
         "ecmaVersion": 2020,
-        "sourceType": "module"
+        "sourceType": "module",
+        "project": "./tsconfig.json"
     },
     "env": {
         "es6": true,
@@ -15,7 +24,25 @@
     },
     "rules": {
         "no-debugger": "off",
-        "no-console": 0,
-        "class-methods-use-this": "off"
+        "linebreak-style": "off",
+        "semi": "off",
+        "comma-dangle": "off",
+        "no-plusplus": "off",
+        "no-console": "warn",
+        "max-len": "warn",
+        "spaced-comment": ["error", "always", { "markers": ["/"] }],
+        "@typescript-eslint/semi": "off",
+        "@typescript-eslint/comma-dangle": "off",
+        "@typescript-eslint/no-non-null-assertion": "warn",
+        "@typescript-eslint/no-explicit-any": 0,
+        "@typescript-eslint/indent": "off",
+        "class-methods-use-this": "off",
+        "import/prefer-default-export": "off",
+        "no-param-reassign": [
+            "error",
+            {
+                "props": false
+            }
+        ]
     }
 }

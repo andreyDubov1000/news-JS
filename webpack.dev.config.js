@@ -6,4 +6,11 @@ module.exports = {
     devServer: {
         contentBase: path.resolve(__dirname, '../dist'),
     },
+    module: {
+        rules: [
+            {
+                enforce: 'pre',
+                test: /\.[tj]s$/,
+                use: ['source-map-loader'],
+            }]},
 };
